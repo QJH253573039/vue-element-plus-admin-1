@@ -1,8 +1,9 @@
 import axios from 'axios'
+import QS from 'qs';
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { baseURL} from '../config/http.config'
 import { getToken } from '@/utils/auth'
-import store from '@/store'
+import { useStore } from '@/store'
 
 const service = axios.create({
     baseURL: baseURL,
@@ -12,8 +13,11 @@ const service = axios.create({
 
 service.interceptors.request.use(
     config => {
-        if (store.getters.token) {
+        if (useStore().getters.token) {
             config.headers['Authorization'] = getToken()
+        }
+        if (config.method === "POST"){
+            config.data = QS.stringify(config.data)
         }
         return config
     },
@@ -35,7 +39,7 @@ service.interceptors.response.use(
                 duration: 5 * 1000
             })
 
-            if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+            if (res.code === 23001) {
                 ElMessageBox.confirm('您已经注销，您可以取消停留在本页，或再次登录，确认注销', {
                     confirmButtonText: '登录',
                     cancelButtonText: '取消',

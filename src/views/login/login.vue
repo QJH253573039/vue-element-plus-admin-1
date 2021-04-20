@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrap">
+  <div class="page-wrapper">
     <div class="box">
       <p class="title">Vue3-ElementPlus-Admin</p>
       <el-form
@@ -24,57 +24,66 @@
 </template>
 
 <script>
-import { reactive, ref ,toRefs} from "vue";
-import {useStore} from 'vuex';
-import { useRouter } from 'vue-router'
-import {login} from '@/api/user';
+import { reactive, ref, toRefs } from "vue";
+import { useStore } from "vuex";
+import { ElMessage } from "element-plus";
+import { useRouter } from "vue-router";
+import {generateDynamicRoutes} from '@/router';
 export default {
   setup() {
-    const store = useStore()
-    const router = useRouter()
+    const store = useStore();
+    const router = useRouter();
 
     const loginForm = ref(null);
-
     let state = reactive({
-        formModel:{
-            username: "admin",
-            password: 123456,
-        },
-        loading:false,
-        rules:{
-            username: [{ required: true, message: '请输入用户名' }],
-            password: [{ required: true, message: '请输入密码' }]
-        }
-    })
+      formModel: {
+        username: "admin",
+        password: 123456,
+      },
+      loading: false,
+      rules: {
+        username: [{ required: true, message: "请输入用户名" }],
+        password: [{ required: true, message: "请输入密码" }],
+      },
+    });
 
-
-    function handleLogin() {
-        loginForm.value.validate(async (valid)=>{
-            if(valid){
-                state.loading = true;
-                const {code,data} = await login(state.formModel);
-                if(code === 200){
-                    store.dispatch('user/login',data);
-                    router.replace({
-                        path:'/'
-                    })
-                }
-                state.loading = false;
+    const handleLogin = () => {
+      loginForm.value.validate(async (valid) => {
+        if (valid) {
+          state.loading = true;
+          try {
+            // 登录
+            await store.dispatch("user/login", state.formModel);
+            // 获取用户信息
+            await store.dispatch("user/queryUserInfo");
+            // 权限菜单
+            const routes = await store.dispatch("menu/generateRoutes");
+            if (!routes) {
+              ElMessage.error("该账号没有权限");
+            } else {
+              await generateDynamicRoutes(routes)
+              router.push('/');
             }
-        })
-    }
+            state.loading = false;
+          } catch (error) {
+            state.loading = false;
+            ElMessage.error(error);
+          }
+        }
+      });
+    };
 
     return {
-        ...toRefs(state),
-        loginForm,
-        handleLogin
+      ...toRefs(state),
+      loginForm,
+      handleLogin,
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
-.page-wrap {
+.page-wrapper {
   width: 100vw;
   height: 100vh;
   background-color: #2f3447;

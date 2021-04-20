@@ -1,0 +1,26 @@
+.sider-container {
+    .el-menu {
+        border-width: 0;
+
+        .is-active {
+            color: #FFF !important;
+            background-color: #2d8cf0 !important;
+        }
+
+        .el-menu-item:hover {
+            background-color: #2d8cf0 !important;
+        }
+
+        .el-submenu__title:hover {
+            background-color: #2d8cf0 !important;
+            // color: #fff !important;
+        }
+
+        .el-submenu {
+            .el-menu-item.is-active {
+                color: #FFF !important;
+                background-color: #2d8cf0 !important;
+            }
+        }
+    }
+}

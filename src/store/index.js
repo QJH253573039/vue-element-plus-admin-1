@@ -12,9 +12,21 @@ Object.keys(modules).forEach((key) => {
 
 const debug = process.env.NODE_ENV !== 'production'
 
-export default createStore({
+export const store = createStore({
   modules,
   getters,
   strict: debug,
   plugins: debug ? [createLogger()] : []
 })
+
+export function useStore() {
+  return store;
+}
+
+
+export function loadStore(app) {
+  app.use(store)
+  return store;
+}
+
+export default store;

@@ -1,19 +1,21 @@
 import { createApp } from 'vue';
+import App from './App.vue';
+import { bootstrap } from './bootstrap';
+import { loadRouter } from '@/router';
+import { loadStore } from '@/store';
+import { loadElement } from '@/plugins/elementplus'
 
-import {loadElement} from './plugins/elementplus';  // element plus UI
-
-import App from './App.vue'
-
-import router from './router'  // 路由
-
-import store from './store'  // 状态管理
-
-import 'normalize.css'
+import 'normalize.css';
+import 'nprogress/nprogress.css';
+import '@/styles/index.scss';
 
 const app = createApp(App)
-app.use(store);
-app.use(router);
+const store =  loadStore(app)
+const router =  loadRouter(app)
+loadElement(app)
 
-loadElement(app);   // 加载 element plus 组件 
+bootstrap({ router, store }).then(async () => {
+    router.isReady().then(() => app.mount('#app'))
+})
 
-app.mount('#app');
+
