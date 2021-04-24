@@ -20,6 +20,7 @@ export function loadGuards(router) {
         if (!NProgress.isStarted()) {
             NProgress.start()
         }
+
         if (checkToken()) {
             if(to.name == 'login'){
                 next({ path:'/login'})
@@ -30,7 +31,14 @@ export function loadGuards(router) {
                 if (!store.getters.userInfo){
                     await store.dispatch('user/queryUserInfo');
                 }
-
+                
+                store.commit('process/ADD_PROCESS', {
+                    keepAlive: to.meta.keepAlive,
+                    label: to.meta.title,
+                    value: to.fullPath,
+                    name: to.name
+                })
+                
                 const hasRoute = router.hasRoute(to.name)
                 if (!hasRoute) {
                     next({ ...to, replace: true })

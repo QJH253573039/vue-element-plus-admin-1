@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>line</h1>
+        <h1>i18n</h1>
     </div>
 </template>
 

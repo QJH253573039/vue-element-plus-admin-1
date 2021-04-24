@@ -8,6 +8,7 @@
 export default {
   name:'dashboard',
   setup(){
+    console.log(111111);
   }
 }
 </script>

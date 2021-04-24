@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>图标</h1>
+        <h1>avatar-upload</h1>
     </div>
 </template>
 

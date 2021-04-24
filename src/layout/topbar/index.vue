@@ -1,11 +1,11 @@
 <template>
-  <el-header height="70px" class="topbar">
+  <el-header height="70px" class="topbar-wrap">
     <div class="topbar__collapse" @click="collapse">
       <i class="el-icon-s-fold"></i>
     </div>
 
     <div class="topbar__route-nav">
-        <route-nav />
+      <route-nav />
     </div>
 
     <div class="topbar__flex"></div>
@@ -30,10 +30,10 @@
 <script>
 import { useStore } from "vuex";
 import { computed } from "vue";
-import {useRouter} from 'vue-router';
-import RouteNav from './route-nav';
+import { useRouter } from "vue-router";
+import RouteNav from "./route-nav";
 export default {
-    components:{RouteNav},
+  components: { RouteNav },
   setup() {
     const store = useStore();
     const router = useRouter();
@@ -51,17 +51,18 @@ export default {
     };
 
     const onCommand = (name) => {
-      switch(name){
-          case 'userInfo':
-              break;
-              case 'logout':
-                  store.dispatch('user/logout').then(()=>{
-                      router.push({
-                          path:'/login',
-                          replace:true
-                      })
-                  })
-                  break;
+      switch (name) {
+        case "userInfo":
+          router.push("/my/info");
+          break;
+        case "logout":
+          store.dispatch("user/logout").then(() => {
+            router.push({
+              path: "/login",
+              replace: true,
+            });
+          });
+          break;
       }
     };
 
@@ -76,10 +77,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.topbar {
-  padding: 0 10px;
+.topbar-wrap {
   height: 50px;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
   background-color: #fff;
@@ -116,7 +115,6 @@ export default {
       white-space: nowrap;
       margin-right: 15px;
     }
-    
   }
 }
 </style>

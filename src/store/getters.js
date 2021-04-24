@@ -12,4 +12,6 @@ export default {
     viewRoutes: (state) => toRaw(state.menu.viewRoutes),
     // 菜单是否展开
     menuCollapse:(state)=>state.menu.collapse,
+    // 窗口列表
+    processList: (state) => state.process.list,
 }

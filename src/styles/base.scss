@@ -6,8 +6,40 @@ body {
     font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
-#app,
-#root,
 html {
     height: 100%;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+
+#app,
+#root {
+    height: 100%;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(144, 147, 153, .3);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
 }

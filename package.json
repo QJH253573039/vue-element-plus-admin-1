@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "clipboard": "^2.0.8",
     "core-js": "^3.8.3",
     "element-plus": "^1.0.2-beta.40",
     "js-cookie": "^2.2.1",
@@ -33,6 +34,7 @@
     "eslint": "^7.20.0",
     "eslint-plugin-vue": "^7.2.0",
     "sass": "^1.32.7",
-    "sass-loader": "^11.0.1"
+    "sass-loader": "^11.0.1",
+    "svg-sprite-loader": "^6.0.5"
   }
 }

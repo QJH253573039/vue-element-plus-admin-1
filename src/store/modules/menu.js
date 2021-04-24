@@ -59,7 +59,7 @@ const actions = {
                             viewPath: e.viewPath,
                             name: e.name,
                             meta: {
-                                keepAlive: e.keepAlive == 1,
+                                keepAlive: e.meta.keepAlive == 1,
                                 title: e.meta.title || e.name,
                                 type: e.meta.type,
                                 icon: e.meta.icon,

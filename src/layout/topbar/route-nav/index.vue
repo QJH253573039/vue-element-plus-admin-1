@@ -12,12 +12,11 @@
 <script>
 import { useStore } from "vuex";
 import { computed, ref, watch } from "vue";
-import { useRouter } from 'vue-router'
-// import _ from "lodash";
+import { useRouter } from "vue-router";
 export default {
   setup() {
     const store = useStore();
-    const { currentRoute } = useRouter()
+    const { currentRoute } = useRouter();
 
     const list = ref([]);
 
@@ -25,65 +24,27 @@ export default {
       return store.getters.menuGroup;
     });
 
-     watch(
+    watch(
       () => currentRoute.value,
       (route) => {
-        if (route.path.startsWith('/redirect/')) {
-          return
+        if (route.path.startsWith("/redirect/")) {
+          return;
         }
-        getBreadcrumb()
+        getBreadcrumb();
       },
       {
-        immediate: true
+        immediate: true,
       }
-    )
+    );
 
-     function getBreadcrumb() {
-      const matched  = currentRoute.value.matched.filter((item) => item.meta && item.meta.title);
-      list.value = matched.filter((item) => item.meta && item.meta.title && item.meta.show !== false)
+    function getBreadcrumb() {
+      const matched = currentRoute.value.matched.filter(
+        (item) => item.meta && item.meta.title
+      );
+      list.value = matched.filter(
+        (item) => item.meta && item.meta.title && item.meta.show !== false
+      );
     }
-
-    // watch(
-    //   "$route",
-    //   (route) => {
-    //       console.log(route);
-    //       console.log(Boolean);
-    //     const deep = (item) => {
-    //       if (route === "/") {
-    //         return false;
-    //       }
-
-    //       if (item.path == route) {
-    //         return item;
-    //       } else {
-    //         if (item.children) {
-    //           const ret = item.children.map(deep).find(Boolean);
-
-    //           if (ret) {
-    //             return [item, ret];
-    //           } else {
-    //             return false;
-    //           }
-    //         } else {
-    //           return false;
-    //         }
-    //       }
-    //     };
-
-    //     list.value = _(menuGroup)
-    //       .map(deep)
-    //       .filter(Boolean)
-    //       .flattenDeep()
-    //       .value();
-
-    //     if (list.value.length === 0) {
-    //       list.value.push(route);
-    //     }
-    //   },
-    //   {
-    //     immediate: true,
-    //   }
-    // );
 
     return {
       menuGroup,

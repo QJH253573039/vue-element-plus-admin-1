@@ -42,6 +42,10 @@ export function generateDynamicRoutes(list){
   })
 
   views.children = views.children.concat(list);
-  router.addRoute(views)
-  
+  router.addRoute(views);
+  // 在动态路由添加后，在将404添加进入，解决刷新是找不到路由跳转404
+  router.addRoute({
+    path: '/:pathMatch(.*)',
+    redirect: '/404'
+  })
 }

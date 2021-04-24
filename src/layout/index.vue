@@ -2,10 +2,21 @@
   <div class="app-wrapper">
     <el-container>
       <sider class="sider-container" />
-      <el-container class="main-container">
-        <topbar />
+      <el-container class="main-container" direction="vertical">
+        <div class="topbar">
+          <topbar />
+        </div>
+        <div class="process">
+          <process />
+        </div>
         <el-main class="main-body">
-          <router-view />
+           <div class="main__view">
+             <router-view v-slot="{ Component }">
+              <keep-alive :include="caches">
+                <component :is="Component" />
+              </keep-alive>
+            </router-view>
+           </div>
         </el-main>
       </el-container>
     </el-container>
@@ -13,13 +24,29 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
 import sider from "./sider";
-import topbar from './topbar';
+import topbar from "./topbar";
+import process from "./process";
 export default {
   name: "Layout",
-  components: { sider,topbar},
+  components: { sider, topbar, process },
   setup() {
-    return {};
+    const store = useStore();
+
+    // 缓存列表
+    const caches = computed(() => {
+      return store.getters.processList
+        .filter((e) => e.keepAlive)
+        .map((e) => {
+          return e.name;
+        });
+    });
+
+    return {
+      caches,
+    };
   },
 };
 </script>
@@ -35,23 +62,43 @@ export default {
 
 .sider-container {
   transition: width 0.28s;
-  // width: 260px !important;
   background-color: #304156;
   height: 100%;
   overflow: hidden;
 }
 
 .main-container {
-  min-height: 100%;
+  height: 100%;
   width: calc(100% - 260px);
-  transition: margin-left 0.28s;
   display: flex;
   flex-direction: column;
-}
 
-.main-body {
-  min-height: calc(100vh - 70px);
-  width: 100%;
-  overflow: hidden;
+  .topbar {
+    margin-bottom: 10px;
+  }
+
+  .process {
+    margin-bottom: 10px;
+  }
+
+  .main-body {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+
+      .main__view{
+        width: 100%;
+        height: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        overflow: hidden auto;
+        
+        // & > div{
+        //   height: 100%;
+        //   background-color: #FFF;
+        // }
+      }
+  }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
     <div class="sider-wrap">
-        <!-- <div class="logo">
+        <div class="logo">
             <div class="logo-title" v-if="!menuCollapse">Vue Admin</div>
-            <div class="logo-title" v-else>Admin</div>
-        </div> -->
+            <div class="logo-title" :class="{collapse:menuCollapse}" v-else>V</div>
+        </div>
         <div class="menu">
             <sider-menu  :collapse="menuCollapse"/>   
         </div>
@@ -42,12 +42,17 @@ export default {
         .logo-title{
             color: #fff;
             font-size: 30px;
+            text-align: center;
+        }
+
+        .collapse{
+            width: 64px !important;
         }
     }
 
     .menu{
         overflow-y: auto;
-        height: calc(100% - 120px);
+        height: calc(100% - 80px);
 
         &::-webkit-scrollbar {
 			width: 0;
