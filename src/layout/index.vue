@@ -93,6 +93,7 @@ export default {
         padding: 0 10px;
         box-sizing: border-box;
         overflow: hidden auto;
+        position: relative;
         
         // & > div{
         //   height: 100%;

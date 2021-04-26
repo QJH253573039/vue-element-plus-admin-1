@@ -1,7 +1,8 @@
 <template>
   <el-header height="70px" class="topbar-wrap">
     <div class="topbar__collapse" @click="collapse">
-      <i class="el-icon-s-fold"></i>
+      <icon-svg name="indent" v-if="menuCollapse"/>
+      <icon-svg name="outdent" v-else/>
     </div>
 
     <div class="topbar__route-nav">
@@ -91,10 +92,8 @@ export default {
     width: 40px;
     cursor: pointer;
 
-    i {
-      // height: 22px;
-      // width: 22px;
-      font-size: 22px;
+    svg{
+      font-size: 24px;
     }
   }
 

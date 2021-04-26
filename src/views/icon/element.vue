@@ -15,7 +15,7 @@
             <span class="icon">
                <i :class="'el-icon-' + icon" />
             </span>
-            <span class="icon-name">{{ icon }}</span>
+            <span class="icon-name">{{ 'el-icon-'+icon }}</span>
           </div>
         </el-tooltip>
       </li>
