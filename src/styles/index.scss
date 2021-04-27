@@ -3,3 +3,36 @@
 @import url(./variables.scss);
 @import url(./sider.scss);
 @import url(./base.scss);
+
+
+.app-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #fff;
+
+    .container-header {
+        color: #444;
+        display: block;
+        padding: 10px;
+        position: relative;
+        border-bottom: 1px solid #f4f4f4;
+
+        .box-action {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p10{
+    padding: 10px;
+}
