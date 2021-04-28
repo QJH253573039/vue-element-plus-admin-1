@@ -1,8 +1,14 @@
 import 'element-plus/packages/theme-chalk/src/base.scss';
 import configElement from '../config/element.config';
+import 'dayjs/locale/zh-cn';
+import lang from 'element-plus/lib/locale/lang/zh-cn';
+import locale from 'element-plus/lib/locale';
 
 // element-plus 全局配置
 const { size, zIndex } = configElement;
+
+// 设置语言
+locale.use(lang)
 
 import {
   ElAlert,

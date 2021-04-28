@@ -8,9 +8,7 @@
 .app-container {
     width: 100%;
     box-sizing: border-box;
-    padding: 10px;
     border-radius: 3px;
-    background-color: #fff;
 
     .container-header {
         color: #444;
@@ -18,6 +16,8 @@
         padding: 10px;
         position: relative;
         border-bottom: 1px solid #f4f4f4;
+        background-color: #fff;
+        margin-bottom: 10px;
 
         .box-action {
             display: flex;
@@ -25,14 +25,62 @@
             flex-wrap: wrap;
         }
     }
+
+    .app-body {
+        background-color: #fff;
+        padding: 10px;
+    }
 }
 
-.flex{
+// 表格头部自定义
+.custom-table-header {
+    padding: 10px 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.custom-table-pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+
+.flex {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.p10{
+.p10 {
     padding: 10px;
+}
+
+.ml20{
+    margin-left: 20px;
+}
+
+.refresh-button {
+    width: 34px;
+    height: 32px;
+    border: 1px solid #E6E6E6;
+    font-size: 16px;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.w200 {
+    width: 200px;
+}
+
+.w300 {
+    width: 300px;
 }
