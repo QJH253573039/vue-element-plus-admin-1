@@ -24,8 +24,9 @@
             <el-form-item prop="status" label="状态">
               <el-select v-model="filterForm.status" placeholder="请选择状态">
                 <el-option label="全部" value=""></el-option>
+                <el-option label="审核中" :value="0"></el-option>
                 <el-option label="上架" :value="1"></el-option>
-                <el-option label="下架" :value="0"></el-option>
+                <el-option label="下架" :value="2"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item>
@@ -43,7 +44,7 @@
         <div class="refresh-button" @click="refresh">
           <i class="el-icon-refresh"></i>
         </div>
-        <el-button type="primary" icon="el-icon-plus" size="small"
+        <el-button type="primary" icon="el-icon-plus" size="small" @click="handleCreate"
           >新增</el-button
         >
         <param-selector
@@ -60,10 +61,17 @@
         style="width: 100%"
         current-row-key="id"
       >
-        <el-table-column prop="id" label="ID" width="100" v-if="hasParam('id')">
+        <el-table-column
+          prop="id"
+          align="center"
+          label="ID"
+          width="100"
+          v-if="hasParam('id')"
+        >
         </el-table-column>
         <el-table-column
           prop="title"
+          align="center"
           label="标题"
           v-if="hasParam('title')"
           show-overflow-tooltip
@@ -72,6 +80,7 @@
         <el-table-column
           prop="author"
           label="作者"
+          align="center"
           v-if="hasParam('author')"
           show-overflow-tooltip
         >
@@ -79,26 +88,40 @@
         <el-table-column
           prop="star"
           label="评分"
+          align="center"
           v-if="hasParam('star')"
           width="120"
         >
+          <template #default="scope">
+            <el-rate v-model="scope.row.star" disabled show-score> </el-rate>
+          </template>
         </el-table-column>
         <el-table-column
           prop="status"
           label="状态"
+          align="center"
           v-if="hasParam('status')"
           width="120"
         >
           <template #default="scope">
-            <el-tag type="success" effect="dark" v-if="scope.row.status"
-              >上架</el-tag
+            <el-tag effect="dark" v-if="scope.row.status === 0">{{
+              statusOptions[scope.row.status]
+            }}</el-tag>
+            <el-tag
+              type="success"
+              effect="dark"
+              v-if="scope.row.status === 1"
+              >{{ statusOptions[scope.row.status] }}</el-tag
             >
-            <el-tag type="danger" effect="dark" v-else>下架</el-tag>
+            <el-tag type="danger" effect="dark" v-if="scope.row.status === 2">{{
+              statusOptions[scope.row.status]
+            }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
           prop="viewCount"
           label="阅读数"
+          align="center"
           v-if="hasParam('viewCount')"
           width="140"
         >
@@ -106,6 +129,7 @@
         <el-table-column
           prop="create_at"
           label="时间"
+          align="center"
           v-if="hasParam('create_at')"
           width="160"
         >
@@ -113,10 +137,17 @@
             {{ handleFormatDate(scope.row.create_at) }}
           </template>
         </el-table-column>
-        <el-table-column label="操作">
-          <template #default>
-            <el-button size="mini">编辑</el-button>
-            <el-button size="mini" type="danger">删除</el-button>
+        <el-table-column label="操作" align="center" width="230">
+          <template #default="scope">
+            <el-button size="mini" type="primary" @click="handleEdit(scope.row)"
+              >编辑</el-button
+            >
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.$index)"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -135,16 +166,67 @@
         </el-pagination>
       </div>
     </div>
+
+    <el-dialog
+      :title="dialogTitleMap[dialogStatus]"
+      v-model="dialogFormVisible"
+      :close-on-click-modal="false"
+    >
+      <el-form
+        ref="dataForm"
+        :rules="rules"
+        :model="temp"
+        label-position="left"
+        label-width="70px"
+        style="width: 400px; margin-left: 50px"
+      >
+        <el-form-item label="标题" prop="title">
+          <el-input v-model="temp.title" />
+        </el-form-item>
+        <el-form-item label="作者" prop="author">
+          <el-input v-model="temp.author" />
+        </el-form-item>
+        <el-form-item label="状态" prop="status">
+          <el-select v-model="temp.status" placeholder="Please select">
+            <el-option label="审核中" :value="0"></el-option>
+            <el-option label="上架" :value="1"></el-option>
+            <el-option label="下架" :value="2"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="评分" prop="star">
+          <el-rate
+            v-model="temp.star"
+            :colors="['#99A9BF', '#F7BA2A', '#FF9900']"
+            :max="5"
+            style="margin-top: 8px"
+          />
+        </el-form-item>
+        <el-form-item label="阅读数" prop="viewCount">
+          <el-input v-model="temp.viewCount" type="number"/>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="dialogFormVisible = false"> 取消 </el-button>
+        <el-button
+          type="primary"
+          @click="dialogStatus === 'create' ? createData() : updateData()"
+        >
+          确定
+        </el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { reactive, ref, toRefs } from "vue";
+import { reactive, ref, toRefs, getCurrentInstance } from "vue";
 import { getTableList } from "@/api/table";
 import { formatDate } from "@/utils/date";
 export default {
   setup() {
     const form = ref(null);
+
+    const { proxy } = getCurrentInstance();
 
     // 需要显示的参数列表
     const paramsList = [
@@ -192,6 +274,30 @@ export default {
       },
       tableData: [],
       params: keys,
+      temp: {
+        id: undefined,
+        author: "",
+        create_at: undefined,
+        star: "",
+        status: undefined,
+        title: "",
+        viewCount: undefined,
+      },
+      dialogTitleMap: {
+        update: "Edit",
+        create: "Create",
+      },
+      dialogStatus: "",
+      dialogFormVisible: false,
+      statusOptions: {
+        0: "审核中",
+        1: "上架",
+        2: "下架",
+      },
+      rules: {
+        title: [{ required: true, message: "标题必须", trigger: "change" }],
+        author: [{ required: true, message: "作者必须", trigger: "change" }],
+      },
     });
 
     // 筛选
@@ -242,6 +348,70 @@ export default {
       return state.params.includes(key);
     };
 
+    const handleDelete = (index) => {
+      state.tableData.splice(index, 1);
+    };
+
+    const handleEdit = (row) => {
+      state.temp = Object.assign({}, row);
+      state.dialogStatus = "update";
+      state.dialogFormVisible = true;
+    };
+
+    const resetTemp = () => {
+        state.temp = {
+            id: undefined,
+            author: "",
+            create_at: undefined,
+            star: "",
+            status: undefined,
+            title: "",
+            viewCount: undefined,
+        }
+    }
+
+    const handleCreate = () => {
+        resetTemp()
+        state.dialogStatus = 'create';
+        state.dialogFormVisible = true;
+    }
+
+    const updateData = () => {
+      form.value.validate((valid) => {
+        if (valid) {
+          const index = state.tableData.findIndex(
+            (v) => v.id === state.temp.id
+          );
+          state.tableData.splice(index, 1, state.temp);
+          state.dialogFormVisible = false;
+          proxy.$notify({
+            title: "Success",
+            message: "更新完成",
+            type: "success",
+            duration: 2000,
+          });
+        }
+      });
+    };
+
+    const createData = () => {
+        form.value.validate((valid) => {
+        if (valid) {
+          state.temp.id = parseInt(Math.random() * 100) + 1024;
+          state.tempcreate_at = 1568861371000;
+
+          state.tableData.unshift(state.temp)
+          state.dialogFormVisible = false;
+          proxy.$notify({
+            title: "Success",
+            message: "创建成功",
+            type: "success",
+            duration: 2000,
+          });
+        }
+      });
+    };
+
     queryList();
 
     return {
@@ -255,6 +425,11 @@ export default {
       handleCurrentChange,
       handleFormatDate,
       hasParam,
+      handleDelete,
+      handleEdit,
+      handleCreate,
+      updateData,
+      createData,
     };
   },
 };
