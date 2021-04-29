@@ -1,19 +1,25 @@
 <template>
-    <div>
-        <h1>map</h1>
-    </div>
+  <div class="app-container">
+    <div id="map" class="chart"></div>
+  </div>
 </template>
 
 <script>
 export default {
-    setup () {
-        
-
-        return {}
-    }
-}
+  setup() {
+    return {};
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
+.app-container {
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.chart {
+  width: 100%;
+  height: 100%;
+}
 </style>

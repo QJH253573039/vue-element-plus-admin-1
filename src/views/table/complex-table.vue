@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="container-header">
       <div>
-        <filter-switch>
+        <filter-switch >
           <el-form ref="form" :model="filterForm" label-width="80px">
             <el-form-item prop="title" label="标题名称">
               <el-input
@@ -219,14 +219,13 @@
 </template>
 
 <script>
-import { reactive, ref, toRefs, getCurrentInstance } from "vue";
+import { reactive, ref, toRefs } from "vue";
+import {ElNotification} from 'element-plus';
 import { getTableList } from "@/api/table";
 import { formatDate } from "@/utils/date";
 export default {
   setup() {
     const form = ref(null);
-
-    const { proxy } = getCurrentInstance();
 
     // 需要显示的参数列表
     const paramsList = [
@@ -384,7 +383,7 @@ export default {
           );
           state.tableData.splice(index, 1, state.temp);
           state.dialogFormVisible = false;
-          proxy.$notify({
+          ElNotification({
             title: "Success",
             message: "更新完成",
             type: "success",
@@ -402,7 +401,7 @@ export default {
 
           state.tableData.unshift(state.temp)
           state.dialogFormVisible = false;
-          proxy.$notify({
+          ElNotification({
             title: "Success",
             message: "创建成功",
             type: "success",

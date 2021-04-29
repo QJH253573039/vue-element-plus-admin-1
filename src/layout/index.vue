@@ -82,7 +82,7 @@ export default {
   }
 
   .main-body {
-    flex: 1;
+    height: calc(100vh - 100px);
     width: 100%;
     overflow: hidden;
     margin-bottom: 10px;

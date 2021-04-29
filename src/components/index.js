@@ -1,16 +1,16 @@
 import { defineAsyncComponent } from 'vue'
 // 加载全局组件
 export function loadComponents(app) {
-    app.component("scroll", defineAsyncComponent({
+    app.component("Scroll", defineAsyncComponent({
         loader: () => import("./scroll/index.vue")
     }));
-    app.component("icon-svg", defineAsyncComponent({
+    app.component("IconSvg", defineAsyncComponent({
         loader: () => import("./icon-svg/index.vue")
     }));
-    app.component("filter-switch",defineAsyncComponent({
+    app.component("FilterSwitch",defineAsyncComponent({
         loader:()=>import('./filter-switch/index.vue')
     }))
-    app.component("param-selector", defineAsyncComponent({
+    app.component("ParamSelector", defineAsyncComponent({
         loader: () => import('./param-selector/index.vue')
     }))
 }

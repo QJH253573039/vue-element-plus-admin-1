@@ -13,8 +13,14 @@
 <script>
 import { ref } from "vue";
 export default {
-  setup() {
-    const show = ref(true);
+  props:{
+    initShop:{
+      type:Boolean,
+      default:false
+    }
+  },
+  setup(props) {
+    const show = ref(props.initShop);
     return {
       show,
     };
