@@ -28,6 +28,7 @@ import { ref } from "vue";
 import clipboard from "@/utils/clipboard";
 import elementIcons from "./element-icons";
 export default {
+  name:'element',
   setup() {
     const icons = ref(elementIcons);
     const generateIconCode = (name) => {

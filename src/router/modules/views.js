@@ -5,7 +5,7 @@ const routes = {
     children: [
         {
             path: '/home',
-            name: 'Home',
+            name: 'home',
             component: () => import('@/views/Home.vue'),
             meta: {
                 show: false,

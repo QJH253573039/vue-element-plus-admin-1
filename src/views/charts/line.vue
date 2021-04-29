@@ -9,30 +9,31 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import * as echarts from "echarts";
 
 export default {
+  name:'line',
   setup() {
     const chart = ref(null);
 
     const initChart = () => {
       chart.value = echarts.init(document.getElementById("line"));
 
-      chart.value.on('updateAxisPointer',function(event){
-          var xAxisInfo = event.axesInfo[0];
+      chart.value.on("updateAxisPointer", function (event) {
+        var xAxisInfo = event.axesInfo[0];
         if (xAxisInfo) {
-            var dimension = xAxisInfo.value + 1;
-            chart.value.setOption({
-                series: {
-                    id: 'pie',
-                    label: {
-                        formatter: '{b}: {@[' + dimension + ']} ({d}%)'
-                    },
-                    encode: {
-                        value: dimension,
-                        tooltip: dimension
-                    }
-                }
-            });
+          var dimension = xAxisInfo.value + 1;
+          chart.value.setOption({
+            series: {
+              id: "pie",
+              label: {
+                formatter: "{b}: {@[" + dimension + "]} ({d}%)",
+              },
+              encode: {
+                value: dimension,
+                tooltip: dimension,
+              },
+            },
+          });
         }
-      })
+      });
 
       chart.value.setOption({
         legend: {},

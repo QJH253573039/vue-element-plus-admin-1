@@ -6,6 +6,7 @@
 
 <script>
 export default {
+    name:'menu1-1-1',
     setup () {
         
 

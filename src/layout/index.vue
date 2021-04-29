@@ -10,13 +10,15 @@
           <process />
         </div>
         <el-main class="main-body">
-           <div class="main__view">
-             <router-view v-slot="{ Component }">
-              <keep-alive :include="caches">
-                <component :is="Component" />
-              </keep-alive>
+          <div class="main__view">
+            <router-view v-slot="{ Component }">
+              <transition name="fade-transform" mode="out-in">
+                <keep-alive :include="caches" :max="20">
+                  <component :is="Component" :key="key" />
+                </keep-alive>
+              </transition>
             </router-view>
-           </div>
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -24,8 +26,9 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { reactive, toRefs, watch, computed } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 import sider from "./sider";
 import topbar from "./topbar";
 import process from "./process";
@@ -34,18 +37,31 @@ export default {
   components: { sider, topbar, process },
   setup() {
     const store = useStore();
-
-    // 缓存列表
-    const caches = computed(() => {
-      return store.getters.processList
-        .filter((e) => e.keepAlive)
-        .map((e) => {
-          return e.name;
-        });
+    const route = useRoute();
+    const state = reactive({
+      caches: [
+        ...store.getters.processList
+          .filter((e) => e.keepAlive)
+          .map((e) => e.name),
+      ],
     });
 
+    const key = computed(() => route.path);
+
+    watch(
+      () => store.getters.processList.length,
+      () => {
+        state.caches = [
+          ...store.getters.processList
+            .filter((e) => e.keepAlive)
+            .map((e) => e.name),
+        ];
+      }
+    );
+
     return {
-      caches,
+      key,
+      ...toRefs(state),
     };
   },
 };
@@ -87,19 +103,32 @@ export default {
     overflow: hidden;
     margin-bottom: 10px;
 
-      .main__view{
-        width: 100%;
-        height: 100%;
-        padding: 0 10px;
-        box-sizing: border-box;
-        overflow: hidden auto;
-        position: relative;
-        
-        // & > div{
-        //   height: 100%;
-        //   background-color: #FFF;
-        // }
-      }
+    .main__view {
+      width: 100%;
+      height: 100%;
+      padding: 0 10px;
+      box-sizing: border-box;
+      overflow: hidden auto;
+      position: relative;
+
+      // & > div{
+      //   height: 100%;
+      //   background-color: #FFF;
+      // }
+    }
   }
+}
+
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+    transition: all 0.5s;
+}
+.fade-transform-enter-from {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+.fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
 }
 </style>

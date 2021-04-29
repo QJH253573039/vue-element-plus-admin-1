@@ -9,6 +9,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import * as echarts from "echarts";
 
 export default {
+  name:'gauge',
   setup() {
     const chart = ref(null);
     let timer;
@@ -608,12 +609,12 @@ export default {
     });
 
     onBeforeUnmount(() => {
+      clearInterval(timer)
       if (!chart.value) {
         return;
       }
       chart.value.dispose();
       chart.value = null;
-      clearInterval(timer)
     });
 
     return {};

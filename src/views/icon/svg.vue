@@ -28,6 +28,7 @@ import { ref } from "vue";
 import clipboard from "@/utils/clipboard";
 import svgIcons from "./svg-icons";
 export default {
+  name:'svg',
   setup() {
     const icons = ref(svgIcons);
     const generateIconCode = (name) => {

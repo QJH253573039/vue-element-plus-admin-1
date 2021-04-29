@@ -13,10 +13,10 @@
 <script>
 import { useRouter } from "vue-router";
 export default {
+  name:'error401',
   setup() {
     let router = useRouter();
     const back = () => {
-      console.log(1);
       router.back();
     };
     return {

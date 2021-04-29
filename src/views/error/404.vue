@@ -18,7 +18,7 @@
 <script>
 import { useRouter } from "vue-router";
 export default {
-  name: "404",
+  name: "error404",
   setup() {
     let router = useRouter();
     const goHome = () => {

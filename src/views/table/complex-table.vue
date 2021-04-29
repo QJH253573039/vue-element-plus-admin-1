@@ -224,6 +224,7 @@ import {ElNotification} from 'element-plus';
 import { getTableList } from "@/api/table";
 import { formatDate } from "@/utils/date";
 export default {
+  name:'complex-table',
   setup() {
     const form = ref(null);
 

@@ -86,6 +86,7 @@ const data = [
   },
 ];
 export default {
+  name:'dynamic-table',
   setup() {
     const tableHead = ref(["id", "title"]);
     const paramList = ref(params);

@@ -9,6 +9,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import * as echarts from "echarts";
 
 export default {
+  name:'bar',
   setup() {
     const chart = ref(null);
 
@@ -125,7 +126,7 @@ export default {
       };
 
       count = 11;
-     timer = setInterval(function () {
+      timer = setInterval(function () {
         var axisData = new Date().toLocaleTimeString().replace(/^\D*/, "");
 
         var data0 = option.series[0].data;
@@ -142,6 +143,7 @@ export default {
 
         chart.value.setOption(option);
       }, 2100);
+      chart.value.setOption(option);
     };
 
     onMounted(() => {
@@ -149,12 +151,12 @@ export default {
     });
 
     onBeforeUnmount(() => {
+      clearInterval(timer);
       if (!chart.value) {
         return;
       }
       chart.value.dispose();
       chart.value = null;
-      clearInterval(timer)
     });
 
     return {};

@@ -9,6 +9,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import * as echarts from "echarts";
 
 export default {
+  name:'pie',
   setup() {
     const chart = ref(null);
 
