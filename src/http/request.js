@@ -1,15 +1,11 @@
 import axios from 'axios'
 import QS from 'qs';
 import { ElMessageBox, ElMessage } from 'element-plus'
-import { baseURL} from '../config/http.config'
+import NetworkConfig from '../config/http.config'
 import { getToken } from '@/utils/auth'
 import { useStore } from '@/store'
 
-const service = axios.create({
-    baseURL: baseURL,
-    // withCredentials: true, 
-    timeout: 5000
-})
+const service = axios.create(NetworkConfig)
 
 service.interceptors.request.use(
     config => {
