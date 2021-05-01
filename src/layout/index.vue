@@ -13,7 +13,7 @@
           <div class="main__view">
             <router-view v-slot="{ Component }">
               <transition name="fade-transform" mode="out-in">
-                <keep-alive :include="caches" :max="20">
+                <keep-alive :include="caches" >
                   <component :is="Component" :key="key" />
                 </keep-alive>
               </transition>
@@ -38,7 +38,6 @@ export default {
   setup() {
     const store = useStore();
     const route = useRoute();
-    // caches = ['A','B','C']
     const state = reactive({
       caches: [
         ...store.getters.processList

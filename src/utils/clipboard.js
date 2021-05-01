@@ -2,32 +2,32 @@ import Clipboard from 'clipboard';
 import { ElMessage } from 'element-plus'
 
 
-function clipboardSuccess(text) {
+export const clipboardSuccess = () => {
     ElMessage({
         showClose: true,
-        message: `复制${text}成功`,
+        message: `复制成功`,
         type: 'success'
     });
 }
 
-function clipboardFail(text) {
+export const  clipboardFail = () => {
     ElMessage({
         showClose: true,
-        message: `复制${text}失败`,
+        message: `复制失败`,
         type: 'error'
     });
 }
 
-export default function handleClipboard(text, event) {
+export const handleClipboard = (text, event) => {
     const clipboard = new Clipboard(event.target, {
         text: () => text
     })
     clipboard.on('success', () => {
-        clipboardSuccess(text)
+        clipboardSuccess()
         clipboard.destroy()
     })
     clipboard.on('error', () => {
-        clipboardFail(text)
+        clipboardFail()
         clipboard.destroy()
     })
     clipboard.onClick(event);

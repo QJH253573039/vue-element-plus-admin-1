@@ -1,3 +1,0 @@
-{
-  "watch" : ["./mock.js", "./mock/*.js","./utils/*.js","./data/*.js"]
-}

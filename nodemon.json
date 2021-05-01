@@ -1,0 +1,3 @@
+{
+  "watch" : ["./mock/mock.js", "./mock/*.js","./mock/utils/*.js","./mock/data/*.js"]
+}

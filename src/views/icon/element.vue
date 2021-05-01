@@ -25,7 +25,7 @@
 
 <script>
 import { ref } from "vue";
-import clipboard from "@/utils/clipboard";
+import {handleClipboard as clipboard} from "@/utils/clipboard";
 import elementIcons from "./element-icons";
 export default {
   name:'element',
