@@ -1,6 +1,6 @@
 import NProgress from 'nprogress';
 import { checkToken } from '@/utils/auth';
-import { useStore} from '@/store';
+import { useStore } from '@/store';
 
 NProgress.configure({ showSpinner: false });
 
@@ -22,36 +22,34 @@ export function loadGuards(router) {
         }
 
         if (checkToken()) {
-            if(to.name == 'login'){
-                next({ path:'/login'})
+            if (to.name == 'login') {
+                next({ path: '/login' })
                 NProgress.done();
             } else {
 
-                const store = useStore();
-                if (!store.getters.userInfo){
-                    await store.dispatch('user/queryUserInfo');
-                }
-                
-                store.commit('process/ADD_PROCESS', {
-                    keepAlive: to.meta.keepAlive,
-                    label: to.meta.title,
-                    value: to.fullPath,
-                    name: to.name
-                })
-                
-                const hasRoute = router.hasRoute(to.name)
-                if (!hasRoute) {
-                    next({ ...to, replace: true })
-                } else {
+                const hasRoute = router.hasRoute(to.name);
+                if (hasRoute) {
+                    const store = useStore();
+                    if (!store.getters.userInfo) {
+                        await store.dispatch('user/queryUserInfo');
+                    }
+                    await store.commit('process/ADD_PROCESS', {
+                        keepAlive: to.meta.keepAlive,
+                        label: to.meta.title,
+                        value: to.fullPath,
+                        name: to.name
+                    })
                     next()
+
+                } else {
+                    next({ ...to, replace: true })
                 }
-                
             }
         } else {
             if (!loginIgnore.includes(to)) {
                 next({
                     path: "/login",
-                    replace:true
+                    replace: true
                 });
                 NProgress.done();
             } else {

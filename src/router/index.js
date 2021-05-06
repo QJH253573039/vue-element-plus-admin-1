@@ -24,8 +24,8 @@ export function useRouter() {
 export async function loadRoutes({store}){
   let viewRoutes = toRaw(store.state.menu.viewRoutes);
   if (!viewRoutes) {
-    const routes = await store.dispatch("menu/generateRoutes");
-    generateDynamicRoutes(routes)
+    viewRoutes = await store.dispatch("menu/generateRoutes");
+    generateDynamicRoutes(viewRoutes)
   } else {
     generateDynamicRoutes(viewRoutes)
   }

@@ -13,6 +13,8 @@
     "mock": "cd mock && nodemon generator.js --exec babel-node --presets es2015,stage-2"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^27.1.0",
+    "@ckeditor/ckeditor5-vue": "^2.0.1",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "clipboard": "^2.0.8",

@@ -225,10 +225,10 @@ export const menus = [
     },
     {
         id: 17,
-        name: 'tinymce',
+        name: 'editor',
         parentId: 16,
-        path: '/components/tinymce',
-        viewPath: 'views/components/tinymce.vue',
+        path: '/components/editor',
+        viewPath: 'views/components/editor.vue',
         meta: {
             title: '富文本',
             show: true,

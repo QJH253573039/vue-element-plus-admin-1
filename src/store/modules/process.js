@@ -5,7 +5,8 @@ const state = () => ({
             label: "首页",
             value: "/",
             keepAlive:true,
-            active: true
+            active: true,
+            name:'Layout'
         }
     ]
 })
@@ -21,7 +22,11 @@ const mutations = {
         });
 
         if (item.value == "/") {
-            item.label = '首页'
+            item.label = '首页';
+            item.name = 'Layout'
+            item.value =  "/"
+            item.keepAlive = false;
+            item.active = true;
         }
 
         if (index < 0) {
@@ -33,11 +38,12 @@ const mutations = {
             }
         } else {
             state.list[index].active = true;
-            state.list[index].keepAlive = item.keepAlive;
+            state.list[index].keepAlive = item.keepAlive || false;
             state.list[index].label = item.label;
             state.list[index].value = item.value;
             state.list[index].name = item.name;
         }
+        
     },
 
     DEL_PROCESS(state, index) {

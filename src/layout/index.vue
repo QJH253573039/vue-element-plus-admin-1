@@ -1,5 +1,5 @@
 <template>
-  <div class="app-wrapper">
+  <div class="app-wrapper withoutAnimation" >
     <el-container>
       <sider class="sider-container" />
       <el-container class="main-container" direction="vertical">
@@ -110,12 +110,14 @@ export default {
       box-sizing: border-box;
       overflow: hidden auto;
       position: relative;
-
-      // & > div{
-      //   height: 100%;
-      //   background-color: #FFF;
-      // }
     }
+  }
+}
+
+.withoutAnimation {
+  .main-body,
+  .sider-container {
+    transition: none;
   }
 }
 
