@@ -225,12 +225,12 @@ export const menus = [
     },
     {
         id: 17,
-        name: 'editor',
+        name: 'ricttext',
         parentId: 16,
-        path: '/components/editor',
-        viewPath: 'views/components/editor.vue',
+        path: '/components/ricttext',
+        viewPath: 'views/components/ricttext.vue',
         meta: {
-            title: '富文本',
+            title: '富文本编辑器',
             show: true,
             keepAlive: 1,
             icon: '',
@@ -244,7 +244,7 @@ export const menus = [
         path: '/components/markdown',
         viewPath: 'views/components/markdown.vue',
         meta: {
-            title: 'markdown',
+            title: 'Markdown',
             show: true,
             keepAlive: 1,
             icon: '',

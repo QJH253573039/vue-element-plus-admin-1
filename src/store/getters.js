@@ -14,4 +14,5 @@ export default {
     menuCollapse:(state)=>state.menu.collapse,
     // 窗口列表
     processList: (state) => state.process.list,
+    language: (state) => state.app.language,
 }

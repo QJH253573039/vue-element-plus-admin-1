@@ -12,7 +12,7 @@ import Tinymce from '@/components/tinymce'
 import { ref } from 'vue'
 
 export default {
-  name: 'TinymceDemo',
+  name: 'ricttext',
   components: { Tinymce },
   setup(){
     const content = ref('');
