@@ -1,7 +1,7 @@
-import elementVariables from '@/styles/element-variables.scss'
+import variables from '@/styles/element-variables.scss'
 
 const state = () => ({
-    theme: elementVariables.theme,
+    theme: variables.theme,
 })
 
 const mutations = {

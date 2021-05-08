@@ -195,20 +195,20 @@ export const menus = [
             type: 1,
         }
     },
-    {
-        id: 15,
-        name: 'documentation',
-        parentId: 0,
-        path: '/documentation',
-        viewPath: 'views/documentation/index.vue',
-        meta: {
-            title: '文档',
-            show: true,
-            keepAlive: 1,
-            icon: 'documentation',
-            type: 1,
-        }
-    },
+    // {
+    //     id: 15,
+    //     name: 'documentation',
+    //     parentId: 0,
+    //     path: '/documentation',
+    //     viewPath: 'views/documentation/index.vue',
+    //     meta: {
+    //         title: '文档',
+    //         show: true,
+    //         keepAlive: 1,
+    //         icon: 'documentation',
+    //         type: 1,
+    //     }
+    // },
     {
         id: 16,
         name: 'components',
