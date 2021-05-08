@@ -33,7 +33,7 @@
 ```
 
 ## 目录结构
-
+```
 ├── mock                       # 项目mock 模拟数据
 ├── public                     # 静态资源
 │   │── favicon.ico            # favicon图标
@@ -82,4 +82,6 @@ yarn
 yarn start
 ```
 
-启动完成后会自动打开浏览器访问 http://localhost:8080/
+启动完成后会自动打开浏览器访问 http://localhost:8080/.
+
+部分功能暂未完成，待续。
