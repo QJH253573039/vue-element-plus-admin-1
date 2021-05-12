@@ -1,18 +1,19 @@
 const routes = {
     path: '/',
     name: 'Layout',
+    redirect: '/dashboard',
     component: () => import('@/layout/index.vue'),
     children: [
         {
-            path: '/home',
-            name: 'home',
-            component: () => import('@/views/Home.vue'),
+            name: 'dashboard',
+            path: '/dashboard',
+            component: () => import('@/views/dashboard/index.vue'),
             meta: {
+                title: '控制台',
                 show: false,
-                icon: '',
                 keepAlive: 1,
+                icon: 'desktop',
                 type: 1,
-                title: '首页'
             }
         },
         {

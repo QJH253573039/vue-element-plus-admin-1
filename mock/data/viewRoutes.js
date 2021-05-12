@@ -1,18 +1,18 @@
 export const menus = [
-    {
-        id: 1,
-        name: 'dashboard',
-        parentId: 0,
-        path: '/dashboard',
-        viewPath: null,
-        meta: {
-            title: '控制台',
-            show: true,
-            keepAlive: 1,
-            icon: 'desktop',
-            type: 0,
-        }
-    },
+    // {
+    //     id: 1,
+    //     name: 'dashboard',
+    //     parentId: 0,
+    //     path: '/dashboard',
+    //     viewPath: null,
+    //     meta: {
+    //         title: '控制台',
+    //         show: true,
+    //         keepAlive: 1,
+    //         icon: 'desktop',
+    //         type: 0,
+    //     }
+    // },
     {
         id: 2,
         name: 'data',
@@ -251,20 +251,20 @@ export const menus = [
             type: 1,
         }
     },
-    {
-        id: 19,
-        name: 'avatar-upload',
-        parentId: 16,
-        path: '/components/avatar-upload',
-        viewPath: 'views/components/avatar-upload.vue',
-        meta: {
-            title: '头像上传',
-            show: true,
-            keepAlive: 1,
-            icon: '',
-            type: 1,
-        }
-    },
+    // {
+    //     id: 19,
+    //     name: 'avatar-upload',
+    //     parentId: 16,
+    //     path: '/components/avatar-upload',
+    //     viewPath: 'views/components/avatar-upload.vue',
+    //     meta: {
+    //         title: '头像上传',
+    //         show: true,
+    //         keepAlive: 1,
+    //         icon: '',
+    //         type: 1,
+    //     }
+    // },
     {
         id: 22,
         name: 'dynamic-table',
