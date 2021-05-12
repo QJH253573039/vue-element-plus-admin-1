@@ -21,6 +21,7 @@ export default {
         const menuCollapse = computed(()=>{
             return store.getters.menuCollapse;
         })
+        
         return {
             menuCollapse
         }

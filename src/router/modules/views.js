@@ -10,7 +10,7 @@ const routes = {
             component: () => import('@/views/dashboard/index.vue'),
             meta: {
                 title: '控制台',
-                show: false,
+                show: true,
                 keepAlive: 1,
                 icon: 'desktop',
                 type: 1,

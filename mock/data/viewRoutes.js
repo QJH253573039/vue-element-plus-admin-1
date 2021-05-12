@@ -1,18 +1,18 @@
 export const menus = [
-    // {
-    //     id: 1,
-    //     name: 'dashboard',
-    //     parentId: 0,
-    //     path: '/dashboard',
-    //     viewPath: null,
-    //     meta: {
-    //         title: '控制台',
-    //         show: true,
-    //         keepAlive: 1,
-    //         icon: 'desktop',
-    //         type: 0,
-    //     }
-    // },
+    {
+        id: 1,
+        name: 'dashboard',
+        parentId: 0,
+        path: '/dashboard',
+        viewPath: null,
+        meta: {
+            title: '控制台',
+            show: true,
+            keepAlive: 1,
+            icon: 'desktop',
+            type: 0,
+        }
+    },
     {
         id: 2,
         name: 'data',
@@ -419,6 +419,47 @@ export const menus = [
             type: 1,
         }
     },
-    
+    {
+        id: 33,
+        name: 'system',
+        parentId: 0,
+        path: '/system',
+        viewPath: null,
+        meta: {
+            title: '系统管理',
+            show: true,
+            keepAlive: 1,
+            icon: 'system',
+            type: 0,
+        }
+    },
+    {
+        id: 34,
+        name: 'auth',
+        parentId: 33,
+        path: '/system/auth',
+        viewPath: null,
+        meta: {
+            title: '权限管理',
+            show: true,
+            keepAlive: 1,
+            icon: 'safetycertificate',
+            type: 0,
+        }
+    },
+    {
+        id: 35,
+        name: 'user',
+        parentId: 34,
+        path: '/system/auth/user',
+        viewPath: 'views/system/auth/user/index.vue',
+        meta: {
+            title: '用户列表',
+            show: true,
+            keepAlive: 1,
+            icon: 'user-fill',
+            type: 1,
+        }
+    },
 ]; 
 

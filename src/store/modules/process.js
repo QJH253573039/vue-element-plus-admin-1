@@ -60,7 +60,8 @@ const mutations = {
                 label: "首页",
                 value: "/",
                 keepAlive: true,
-                active: true
+                active: true,
+                name: 'Layout'
             }
         ];
     }

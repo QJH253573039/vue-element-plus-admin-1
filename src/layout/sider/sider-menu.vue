@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { ref,computed } from "vue";
+import _ from 'lodash';
+import { ref,computed,onMounted ,onBeforeUnmount} from "vue";
 import { useStore } from "vuex";
 import {useRouter} from 'vue-router';
 import siderMenuItem from "./sider-menu-item";
@@ -33,7 +34,7 @@ export default {
       default:false
     }
   },
-  setup() {
+  setup(props) {
     const {currentRoute} = useRouter();
     const store = useStore();
     const isCollapse = ref(false);
@@ -43,6 +44,23 @@ export default {
         return store.getters.menuGroup;
       }
       return []
+    })
+
+    const handleResize = (e) => {
+      let innerWidth = e.target.innerWidth;
+      if(innerWidth < 780 && !props.collapse){
+        store.commit('menu/SET_COLLASPE',true)
+      } else if(innerWidth > 780 && props.collapse){
+        store.commit('menu/SET_COLLASPE',false)
+      }
+    }
+
+    onMounted(()=>{
+      window.addEventListener('resize',_.debounce(handleResize,200),true)
+    })
+
+    onBeforeUnmount(()=>{
+      window.removeEventListener('resize',handleResize,true)
     })
 
     const activedPath = computed(()=>{
