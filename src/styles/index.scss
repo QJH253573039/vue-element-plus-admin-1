@@ -1,9 +1,3 @@
-@import url(./element-ui.scss);
-@import url(./variables.scss);
-@import url(./sider.scss);
-@import url(./base.scss);
-
-
 .app-container {
     width: 100%;
     height: 100%;
@@ -39,16 +33,29 @@
     box-sizing: border-box;
 }
 
+.table-search-box {
+
+    .table-search-key {
+        width: 250px;
+        margin-right: 10px;
+    }
+}
+
 
 
 // 表格头部自定义
-
 .custom-table-header {
     padding: 10px 0;
     background: #fff;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+
+    .custom-table-header-action {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .custom-table-pagination {

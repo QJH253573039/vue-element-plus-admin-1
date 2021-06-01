@@ -3,7 +3,7 @@
 
 <div align="center">
   
-[Vue3 Element Plus Admin](https://github.com/TheFirework/vue-element-plus-admin) 开箱即用的后管理系统。它基于vue3和element plus 实现。内置了动态路由，i18n国际化等功能。
+[Vue3 Element Plus Admin](https://github.com/TheFirework/vue-element-plus-admin) 开箱即用的后管理系统。它基于vue3和element plus 实现。内置了动态路由，i18n国际化，动态权限菜单等功能。
 
 </div>
 
@@ -30,6 +30,9 @@
 - Svg Sprite 图标
 - 切换主题色
 - i18n国际化
+- 系统设置
+  - 用户列表
+  - 菜单列表
 ```
 
 ## 目录结构

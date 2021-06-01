@@ -6,8 +6,6 @@ import storage from '@/utils/storage';
 const state = () => ({
     // 菜单列表
     menuGroup: storage.get('menuGroup') || [],      
-    // 权限列表
-    permission: storage.get('permission') || [],
     // 路由列表
     viewRoutes: storage.get('viewRoutes') || [],      
     //菜单是否展开
@@ -18,10 +16,6 @@ const mutations = {
     SET_MENU_GROUP(state, list) {
         state.menuGroup = list;
         storage.set('menuGroup', list)
-    },
-    SET_PERMIESSION(state, permission) {
-        state.permission = permission;
-        storage.set('permission', permission)
     },
     SET_VIEW_ROUTES(state, list) {
         state.viewRoutes = list;
@@ -38,17 +32,13 @@ const mutations = {
         state.viewRoutes = []
         storage.remove('viewRoutes')
     },
-    CLEAR_PERMIESSION(state) { 
-        state.permission = []
-        storage.remove('permission')
-    },
 }
 
 const actions = {
     async generateRoutes({ commit }) {
         return new Promise((resolve, reject) => {
             getPermMenu().then((result) => {
-                const { menus, perms } = result.data;
+                const { menus } = result.data;
                 const routes = menus
                     .filter((e) => e.type != 2)
                     .map((e) => {
@@ -71,8 +61,6 @@ const actions = {
 
                 // 格式化菜单
                 const menuGroup = deepTree(routes);
-                // 设置权限
-                commit("SET_PERMIESSION", perms);
                 // 设置菜单组
                 commit("SET_MENU_GROUP", menuGroup);
                 // 设置视图路由

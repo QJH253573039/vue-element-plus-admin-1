@@ -27,6 +27,7 @@
               style="width: 100%"
               :show-header="false"
               max-height="500"
+              size="mini"
             >
               <el-table-column>
                 <template #default="scope">
@@ -54,6 +55,7 @@
               style="width: 100%"
               :show-header="false"
               max-height="500"
+              size="mini"
             >
               <el-table-column>
                 <template #default="scope">

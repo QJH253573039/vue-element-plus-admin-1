@@ -1,4 +1,4 @@
-export const menus = [
+export const routes = [
     {
         id: 1,
         name: 'dashboard',
@@ -461,5 +461,33 @@ export const menus = [
             type: 1,
         }
     },
+    {
+        id: 36,
+        name: 'menu',
+        parentId: 34,
+        path: '/system/auth/menu',
+        viewPath: 'views/system/auth/menu/index.vue',
+        meta: {
+            title: '菜单列表',
+            show: true,
+            keepAlive: 1,
+            icon: 'menu',
+            type: 1,
+        }
+    },
+    {
+        id: 37,
+        name: 'role',
+        parentId: 34,
+        path: '/system/auth/role',
+        viewPath: 'views/system/auth/role/index.vue',
+        meta: {
+            title: '角色列表',
+            show: true,
+            keepAlive: 1,
+            icon: 'customermanagement-fill',
+            type: 1,
+        }
+    }
 ]; 
 

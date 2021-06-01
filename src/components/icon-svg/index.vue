@@ -15,7 +15,11 @@ export default {
   },
   setup(props) {
     const iconName = computed(() => {
-      return `#icon-${props.name}`;
+      if(props.name.includes('icon-')){
+        return `#${props.name}`;
+      } else {
+        return `#icon-${props.name}`;
+      }
     });
 
     return {

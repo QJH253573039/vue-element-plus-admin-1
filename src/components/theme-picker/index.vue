@@ -29,7 +29,7 @@ export default {
     const ctx = getCurrentInstance();
     const state = reactive({
       chalk: "",
-      theme: store.state.settings.theme,
+      theme: store.state.settings.theme || ORIGINAL_THEME,
     });
 
     const defaultTheme = computed(() => {

@@ -60,6 +60,7 @@
         height="500"
         style="width: 100%"
         current-row-key="id"
+        size="mini"
       >
         <el-table-column
           prop="id"
@@ -398,7 +399,7 @@ export default {
         form.value.validate((valid) => {
         if (valid) {
           state.temp.id = parseInt(Math.random() * 100) + 1024;
-          state.tempcreate_at = 1568861371000;
+          state.temp.create_at = 1568861371000;
 
           state.tableData.unshift(state.temp)
           state.dialogFormVisible = false;

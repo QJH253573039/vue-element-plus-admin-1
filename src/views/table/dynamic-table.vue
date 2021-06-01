@@ -34,7 +34,7 @@
         </div>
         <el-button type="primary" icon="el-icon-plus">新增</el-button>
       </div>
-      <el-table :data="tableData" border style="width: 100%">
+      <el-table :data="tableData" border style="width: 100%" size="mini">
         <el-table-column :label="item" v-for="item in tableHead" :key="item">
           <template #default="scope">
             {{ scope.row[item] }}

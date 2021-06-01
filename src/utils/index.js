@@ -1,4 +1,4 @@
-export function deepTree(list) {
+export const  deepTree = (list) => {
     let newList = [];
     let map = {};
 
@@ -19,6 +19,7 @@ export function deepTree(list) {
     const fn = (list) => {
         list.map((e) => {
             if (e.children instanceof Array) {
+                e.children = orderBy(e.children, "id");
                 fn(e.children);
             }
         });
@@ -26,7 +27,11 @@ export function deepTree(list) {
 
     fn(newList);
 
-    return newList;
+    return orderBy(newList, "id");
+}
+
+export function orderBy(list, key) {
+    return list.sort((a, b) => a[key] - b[key]);
 }
 
 

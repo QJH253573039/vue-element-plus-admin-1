@@ -24,3 +24,39 @@ export function getPermMenu(){
         url: '/permmenu',
     });
 }
+
+// 用户列表
+export function getUserList(data){
+    return request({
+        method: "POST",
+        url: '/sys/user/list',
+        data
+    })
+}
+
+// 菜单列表
+export function getMenuList(data) {
+    return request({
+        method: "POST",
+        url: '/sys/menu/list',
+        data
+    })
+}
+
+// 角色列表
+export function getRoleList(data) {
+    return request({
+        method: "POST",
+        url: '/sys/role/list',
+        data
+    })
+}
+
+// 角色信息
+export function getRoleInfo(data){
+    return request({
+        method: "POST",
+        url: '/sys/role/info',
+        data
+    })
+}

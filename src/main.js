@@ -2,10 +2,9 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { bootstrap } from './bootstrap';
 
-
+import '@/styles/base.scss'
 import 'normalize.css';
 import 'nprogress/nprogress.css';
-import '@/styles/index.scss';
 
 
 const app = createApp(App)

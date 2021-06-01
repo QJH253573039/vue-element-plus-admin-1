@@ -6,3 +6,15 @@ export function loadSvg() {
     const req = require.context("@/icons/svg/", false, /\.svg$/);
     requireAll(req);
 }
+
+// svg 图标列表
+export const iconList = () => {
+    const req = require.context("@/icons/svg/", false, /\.svg$/);
+
+    return req
+        .keys()
+        .map(req)
+        .map((e) => e.default.id)
+        .filter((e) => e.includes("icon"))
+        .sort();
+}
