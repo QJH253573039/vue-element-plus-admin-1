@@ -1,3 +1,4 @@
+import { isNull } from '@/utils'
 const storage = {
     /**
      * 保存数据到 Storage , 将数据转换为 JSON 字符串
@@ -7,26 +8,26 @@ const storage = {
      */
     set(key, value, expired) {
         if (!key) {
-            throw 'storage 执行 set 方法，需要参数 key。';
+            throw 'storage 执行 set 方法，需要参数 key。'
         }
-        if (!value) {
-            throw 'storage 执行 set 方法，需要参数 value。';
+        if (isNull(value)) {
+            throw 'storage 执行 set 方法，需要参数 value。'
         }
         let source = {
             key,
             value,
-        };
-        const now = Date.now();
+        }
+        const now = Date.now()
         if (expired) {
             source.value = JSON.stringify({
                 data: value,
                 expired: now + 1000 * 60 * expired,
-            });
+            })
         } else {
             source.value = JSON.stringify({
                 data: value,
                 expired: 0,
-            });
+            })
         }
         localStorage.setItem(source.key, source.value)
     },
@@ -36,37 +37,37 @@ const storage = {
      */
     get(key) {
         if (!key) {
-            throw 'storage 执行 get 方法，需要参数 key。';
+            throw 'storage 执行 get 方法，需要参数 key。'
         }
         let source = {
             key,
             value: null,
-        };
-        const now = Date.now();
-        let value = localStorage.getItem(key);
-        source.value = value ? JSON.parse(value) : '';
+        }
+        const now = Date.now()
+        let value = localStorage.getItem(key)
+        source.value = value ? JSON.parse(value) : ''
         if (!source.value) {
-            return null;
+            return null
         }
         if (now >= source.value.expired && source.value.expired !== 0) {
-            this.remove(source.key);
-            return null;
+            this.remove(source.key)
+            return null
         }
-        return source.value.data;
+        return source.value.data
     },
     /**
      * 删除 Storage 中存储的数据
      * @param {*} key
      */
     remove(key) {
-        localStorage.removeItem(key);
+        localStorage.removeItem(key)
     },
     /**
      * 清除 Storage 中全部数据
      */
     clear() {
         localStorage.clear()
-    }
-};
+    },
+}
 
-export default storage;
+export default storage
