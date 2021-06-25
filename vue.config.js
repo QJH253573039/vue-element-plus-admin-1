@@ -1,22 +1,10 @@
-const path = require("path")
-
+const path = require('path')
 
 module.exports = {
-    lintOnSave:false,
+    lintOnSave: false,
     productionSourceMap: false,
 
-    // css: {
-        // extract: process.env.NODE_ENV === "production",
-        // sourceMap: false,
-        // loaderOptions: {
-        //     sass: {
-        //         additionalData: `@import "~@/styles/common.scss";`
-        //     }
-        // }
-    // },
-
     chainWebpack(config) {
-
         config.module
             .rule('svg')
             .exclude.add(path.resolve(__dirname, './src/icons'))
@@ -29,8 +17,8 @@ module.exports = {
             .use('svg-sprite-loader')
             .loader('svg-sprite-loader')
             .options({
-                symbolId: 'icon-[name]'
+                symbolId: 'icon-[name]',
             })
             .end()
-    }
+    },
 }

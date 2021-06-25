@@ -1,27 +1,31 @@
-import variables from '@/styles/element-variables.scss'
-
+import variables from '@/config/theme.config.js'
+import storage from '@/utils/storage'
 const state = () => ({
-    theme: variables.theme,
+    theme: storage.get('theme') || variables.theme,
 })
 
 const mutations = {
     CHANGE_SETTING: (state, { key, value }) => {
-        // eslint-disable-next-line no-prototype-builtins
-        if (state.hasOwnProperty(key)) {
-            state[key] = value
+        switch (key) {
+            case 'theme':
+                state.theme = value
+                break
+            default:
+                break
         }
-    }
+        storage.set(key, value)
+    },
 }
 
 const actions = {
     changeSetting({ commit }, data) {
         commit('CHANGE_SETTING', data)
-    }
+    },
 }
 
 export default {
     namespaced: true,
     state: state,
     actions: actions,
-    mutations: mutations
+    mutations: mutations,
 }
