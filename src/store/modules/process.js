@@ -18,10 +18,10 @@ const mutations = {
         )
 
         state.list.map((e) => {
-            e.active = e.value == item.value
+            e.active = e.value === item.value
         })
 
-        if (item.value == '/') {
+        if (item.value === '/') {
             item.label = '首页'
             item.name = 'Layout'
             item.value = '/'
@@ -44,7 +44,6 @@ const mutations = {
             state.list[index].name = item.name
         }
 
-        storage.set('process', state.list)
     },
 
     DEL_PROCESS(state, index) {

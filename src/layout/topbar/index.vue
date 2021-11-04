@@ -1,21 +1,21 @@
 <template>
-  <el-header height="70px" class="topbar-wrap">
+  <el-header class="topbar-wrap" height="70px">
     <div class="topbar__collapse" @click="collapse">
-      <icon-svg name="indent" v-if="menuCollapse"/>
-      <icon-svg name="outdent" v-else/>
+      <icon-svg v-if="menuCollapse" name="indent"/>
+      <icon-svg v-else name="outdent"/>
     </div>
 
     <div class="topbar__route-nav">
-      <route-nav />
+      <route-nav/>
     </div>
 
     <div class="topbar__flex"></div>
 
     <div class="topbar__user">
-      <el-dropdown trigger="click" :hide-on-click="false" @command="onCommand">
+      <el-dropdown :hide-on-click="false" trigger="click" @command="onCommand">
         <span class="el-dropdown-link">
-          <span class="name">{{ userInfo.name }}</span>
-          <el-avatar :size="32" :src="userInfo.avartar"></el-avatar>
+          <span class="name">{{ userInfo.userName }}</span>
+          <el-avatar :size="32" :src="userInfo.headImgUrl"></el-avatar>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -29,18 +29,23 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { computed } from "vue";
-import { useRouter } from "vue-router";
-import RouteNav from "./route-nav";
+import {useStore} from 'vuex';
+import {computed} from 'vue';
+import {useRouter} from 'vue-router';
+import RouteNav from './route-nav';
+
 export default {
-  components: { RouteNav },
+  components: {RouteNav},
   setup() {
     const store = useStore();
     const router = useRouter();
 
     const userInfo = computed(() => {
-      return store.getters.userInfo;
+      let userInfo = store.getters.userInfo
+      return {
+        ...userInfo,
+        headImgUrl:`${process.env.VUE_APP_BASE_API}/${userInfo.headImgUrl}`
+      };
     });
 
     const menuCollapse = computed(() => {
@@ -48,18 +53,18 @@ export default {
     });
 
     const collapse = () => {
-      store.commit("menu/SET_COLLASPE", !menuCollapse.value);
+      store.commit('menu/SET_COLLASPE', !menuCollapse.value);
     };
 
     const onCommand = (name) => {
       switch (name) {
-        case "userInfo":
-          router.push("/my/info");
+        case 'userInfo':
+          router.push('/my/info');
           break;
-        case "logout":
-          store.dispatch("user/logout").then(() => {
+        case 'logout':
+          store.dispatch('user/logout').then(() => {
             router.push({
-              path: "/login",
+              path: '/login',
               replace: true,
             });
           });
@@ -83,6 +88,7 @@ export default {
   display: flex;
   align-items: center;
   background-color: #fff;
+  margin-bottom: 10px;
 
   .topbar__collapse {
     display: flex;
@@ -92,7 +98,7 @@ export default {
     width: 40px;
     cursor: pointer;
 
-    svg{
+    svg {
       font-size: 24px;
     }
   }

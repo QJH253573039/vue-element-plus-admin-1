@@ -1,22 +1,23 @@
 <template>
   <div class="route-nav">
     <el-breadcrumb>
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item v-for="(item, index) in list" :key="index">{{
-        item.meta.title
-      }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="(item, index) in list" :key="index" :to="item.path">{{
+          item.meta.title
+        }}
+      </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { computed, ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import {useStore} from "vuex";
+import {computed, ref, watch} from "vue";
+import {useRouter} from "vue-router";
+
 export default {
   setup() {
     const store = useStore();
-    const { currentRoute } = useRouter();
+    const {currentRoute} = useRouter();
 
     const list = ref([]);
 
@@ -25,24 +26,24 @@ export default {
     });
 
     watch(
-      () => currentRoute.value,
-      (route) => {
-        if (route.path.startsWith("/redirect/")) {
-          return;
+        () => currentRoute.value,
+        (route) => {
+          if (route.path.startsWith("/redirect/")) {
+            return;
+          }
+          getBreadcrumb();
+        },
+        {
+          immediate: true,
         }
-        getBreadcrumb();
-      },
-      {
-        immediate: true,
-      }
     );
 
     function getBreadcrumb() {
       const matched = currentRoute.value.matched.filter(
-        (item) => item.meta && item.meta.title
+          (item) => item.meta && item.meta.title
       );
       list.value = matched.filter(
-        (item) => item.meta && item.meta.title && item.meta.show !== false
+          (item) => item.meta && item.meta.title && item.meta.show !== false
       );
     }
 

@@ -42,16 +42,17 @@ const actions = {
                 .then((result) => {
                     const { menus } = result.data
                     const routes = menus
-                        .filter((e) => e.type != 2)
+                        .filter((e) => e.type !== 2)
                         .map((e) => {
                             return {
                                 id: e.id,
                                 parentId: e.parentId,
                                 path: revisePath(e.path),
                                 viewPath: e.viewPath,
-                                name: e.name,
+                                // fix 解决同名节点 导致组件名称相同而产生的页面加载错误
+                                name: `${e.name}_${e.id}`,
                                 meta: {
-                                    keepAlive: e.meta.keepAlive == 1,
+                                    keepAlive: e.meta.keepAlive === 1,
                                     title: e.meta.title || e.name,
                                     type: e.meta.type,
                                     icon: e.meta.icon,
@@ -66,7 +67,7 @@ const actions = {
                     // 设置菜单组
                     commit('SET_MENU_GROUP', menuGroup)
                     // 设置视图路由
-                    const viewRoutes = routes.filter((e) => e.meta.type == 1)
+                    const viewRoutes = routes.filter((e) => e.meta.type === 1)
                     commit('SET_VIEW_ROUTES', viewRoutes)
                     resolve(viewRoutes)
                 })

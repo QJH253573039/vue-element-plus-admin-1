@@ -1,13 +1,13 @@
 <template>
-  <div class="process-wrap" ref="container">
+  <div ref="container" class="process-wrap">
     <scroll>
       <div
-        class="block"
-        v-for="(item, index) in processList"
-        :key="index"
-        :class="{ active: item.active }"
-        :data-index="index"
-        @mousedown="
+          v-for="(item, index) in processList"
+          :key="index"
+          :class="{ active: item.active }"
+          :data-index="index"
+          class="block"
+          @mousedown="
           (e) => {
             onTap(e, item);
           }
@@ -16,16 +16,16 @@
         <span>{{ item.label }}</span>
 
         <i
-          class="el-icon-close"
-          v-if="index > 0"
-          :class="{ active: index > 0 }"
-          @mousedown.stop="onDel(index)"
+            v-if="index > 0"
+            :class="{ active: index > 0 }"
+            class="el-icon-close"
+            @mousedown.stop="onDel(index)"
         ></i>
       </div>
     </scroll>
 
     <ul v-show="menu.visible" :style="menu.style" class="contextmenu">
-      <li @click="onClose('current')" v-if="isHit">关闭当前</li>
+      <li v-if="isHit" @click="onClose('current')">关闭当前</li>
       <li @click="onClose('other')">关闭其他</li>
       <li @click="onClose('all')">关闭所有</li>
     </ul>
@@ -33,9 +33,10 @@
 </template>
 
 <script>
-import { computed, reactive, ref, onMounted, toRefs } from "vue";
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
+import {computed, reactive, ref, onMounted, toRefs} from 'vue';
+import {useStore} from 'vuex';
+import {useRouter} from 'vue-router';
+
 export default {
   setup() {
     const store = useStore();
@@ -62,7 +63,7 @@ export default {
       container.value.oncontextmenu = () => {
         return false;
       };
-      document.body.addEventListener("click", () => {
+      document.body.addEventListener('click', () => {
         if (state.menu.visible) {
           state.menu.visible = false;
         }
@@ -78,15 +79,15 @@ export default {
           current: item,
           visible: true,
           style: {
-            left: e.layerX + "px",
-            top: e.layerY + "px",
+            left: e.layerX + 'px',
+            top: e.layerY + 'px',
           },
         };
       }
     };
 
     const onDel = (index) => {
-      store.commit("process/DEL_PROCESS", index);
+      store.commit('process/DEL_PROCESS', index);
       toPath();
     };
 
@@ -94,30 +95,28 @@ export default {
       const active = processList.value.find((e) => e.active);
       if (!active) {
         const next = processList.value[processList.value.length - 1];
-        router.push(next ? next.value : "/");
+        router.push(next ? next.value : '/');
       }
     };
 
     const onClose = (name) => {
-      const { current } = state.menu;
+      const {current} = state.menu;
       switch (name) {
-        case "current":
+        case 'current':
           onDel(processList.value.findIndex((e) => e.value == current.value));
           break;
 
-        case "other":
+        case 'other':
           store.commit(
-            "process/SET_PROCESS",
-            processList.value.filter(
-              (e) => e.value == current.value || e.value == "/"
-            )
+              'process/SET_PROCESS',
+              processList.value.filter((e) => e.value == current.value || e.value == '/')
           );
           break;
 
-        case "all":
+        case 'all':
           store.commit(
-            "process/SET_PROCESS",
-            processList.value.filter((e) => e.value == "/")
+              'process/SET_PROCESS',
+              processList.value.filter((e) => e.value == '/')
           );
           break;
       }
@@ -143,6 +142,7 @@ export default {
   height: 30px;
   position: relative;
   padding: 0 10px;
+  margin-bottom: 10px;
 
   .process__left,
   .process__right {

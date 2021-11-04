@@ -1,4 +1,4 @@
-import variables from '@/config/theme.config.js'
+import {variables} from '@/config/theme.config.js'
 import storage from '@/utils/storage'
 const state = () => ({
     theme: storage.get('theme') || variables.theme,

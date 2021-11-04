@@ -9,8 +9,7 @@ export default {
     // 路由列表
     viewRoutes: (state) => toRaw(state.menu.viewRoutes),
     // 菜单是否展开
-    menuCollapse:(state)=>state.menu.collapse,
+    menuCollapse: (state) => state.menu.collapse,
     // 窗口列表
     processList: (state) => state.process.list,
-    language: (state) => state.app.language,
 }
