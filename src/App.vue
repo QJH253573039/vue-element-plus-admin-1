@@ -21,13 +21,6 @@ export default defineComponent({
       locale: store.getters.language
     });
 
-    ElNotification({
-      title: 'Success',
-      message: '排班计划已推送',
-      type: 'success',
-      duration:10000000
-    })
-
     return {
       ...toRefs(state)
     }

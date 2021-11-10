@@ -488,6 +488,20 @@ export const routes = [
             icon: 'customermanagement-fill',
             type: 1,
         }
-    }
+    },
+    {
+        id: 38,
+        name: 'el-svg-icon',
+        parentId: 14,
+        path: '/icon/el-svg-icon',
+        viewPath: 'views/icon/el-svg-icon.vue',
+        meta: {
+            title: 'el-svg-icon',
+            show: true,
+            keepAlive: 1,
+            icon: '',
+            type: 1,
+        }
+    },
 ]; 
 

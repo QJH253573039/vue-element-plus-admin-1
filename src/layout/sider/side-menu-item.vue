@@ -8,13 +8,13 @@
       <span class="title">{{ item.meta.title }}</span>
     </el-menu-item>
 
-    <el-submenu v-else :index="item.path">
+    <el-sub-menu v-else :index="item.path">
       <template #title>
         <icon-svg v-if="item.meta.icon" :name="item.meta.icon" class="icon-svg-item"/>
         <span class="title">{{ item.meta.title }}</span>
       </template>
       <side-menu-item v-for="child in item.children" :key="child.path" :item="child" />
-    </el-submenu>
+    </el-sub-menu>
   </template>
 </template>
 
