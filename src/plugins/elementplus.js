@@ -1,6 +1,5 @@
 import 'element-plus/packages/theme-chalk/src/base.scss';
 import configElement from '../config/element.config';
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 // element-plus 全局配置
 const { size, zIndex } = configElement;
@@ -175,5 +174,5 @@ export function loadElement(app) {
     app.component(component.name, component)
   })
 
-  app.config.globalProperties.$ELEMENT = { size: size, zIndex: zIndex ,locale: zhCn,}
+  app.config.globalProperties.$ELEMENT = { size: size, zIndex: zIndex }
 }
