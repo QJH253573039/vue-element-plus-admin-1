@@ -1,4 +1,3 @@
-import 'element-plus/packages/theme-chalk/src/base.scss';
 import configElement from '../config/element.config';
 
 // element-plus 全局配置

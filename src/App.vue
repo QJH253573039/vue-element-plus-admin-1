@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { ElConfigProvider } from 'element-plus'
+import {ElConfigProvider, ElNotification} from 'element-plus'
 import {defineComponent, reactive, toRefs} from "vue";
 import {useStore} from "vuex";
 
@@ -20,6 +20,13 @@ export default defineComponent({
     const state = reactive({
       locale: store.getters.language
     });
+
+    ElNotification({
+      title: 'Success',
+      message: '排班计划已推送',
+      type: 'success',
+      duration:10000000
+    })
 
     return {
       ...toRefs(state)
