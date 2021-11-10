@@ -1,13 +1,9 @@
-import ElementLocale from 'element-plus/lib/locale'
 import 'element-plus/packages/theme-chalk/src/base.scss';
 import configElement from '../config/element.config';
-import { useI18n } from '@/i18n'
-import locale from 'element-plus/lib/locale';
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 // element-plus 全局配置
 const { size, zIndex } = configElement;
-// 设置语言
-locale.use(useI18n().global.locale)
 
 import {
   ElAlert,
@@ -179,7 +175,5 @@ export function loadElement(app) {
     app.component(component.name, component)
   })
 
-  ElementLocale.i18n(useI18n().global.t)
-
-  app.config.globalProperties.$ELEMENT = { size: size, zIndex: zIndex }
+  app.config.globalProperties.$ELEMENT = { size: size, zIndex: zIndex ,locale: zhCn,}
 }

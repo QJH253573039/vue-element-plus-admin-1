@@ -18,7 +18,7 @@
     "core-js": "^3.8.3",
     "dayjs": "^1.10.4",
     "echarts": "^5.1.1",
-    "element-plus": "^1.0.2-beta.40",
+    "element-plus": "^1.0.2-beta.71",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
@@ -54,8 +54,8 @@
     "mockjs": "^1.1.0",
     "nodemon": "^2.0.7",
     "os": "^0.1.1",
-    "sass": "^1.26.10",
-    "sass-loader": "^10.0.1",
+    "sass": "^1.36.0",
+    "sass-loader": "10.1.1",
     "svg-sprite-loader": "^6.0.5"
   }
 }
