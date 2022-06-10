@@ -31,7 +31,7 @@ export const routes = [
         id: 14,
         name: 'icon',
         parentId: 0,
-        path: 'icon',
+        path: '/icon',
         viewPath: null,
         meta: {
             title: '图标',
@@ -45,7 +45,7 @@ export const routes = [
         id: 3,
         name: 'charts',
         parentId: 0,
-        path: 'charts',
+        path: '/charts',
         viewPath: null,
         meta: {
             title: '图表',
@@ -59,7 +59,7 @@ export const routes = [
         id: 4,
         name: 'table',
         parentId: 0,
-        path: 'table',
+        path: '/table',
         viewPath: null,
         meta: {
             title: 'Table',
@@ -73,7 +73,7 @@ export const routes = [
         id: 5,
         name: 'error',
         parentId: 0,
-        path: 'error',
+        path: '/error',
         viewPath: null,
         meta: {
             title: '错误页面',
@@ -87,7 +87,7 @@ export const routes = [
         id: 6,
         name: 'line',
         parentId: 3,
-        path: 'charts/line',
+        path: '/charts/line',
         viewPath: 'views/charts/line.vue',
         meta: {
             title: '折线图',
@@ -101,7 +101,7 @@ export const routes = [
         id: 7,
         name: 'error404',
         parentId: 5,
-        path: 'error/404',
+        path: '/error/404',
         viewPath: 'views/error/404.vue',
         meta: {
             title: '404',
@@ -115,7 +115,7 @@ export const routes = [
         id: 8,
         name: 'error401',
         parentId: 5,
-        path: 'error/401',
+        path: '/error/401',
         viewPath: 'views/error/401.vue',
         meta: {
             title: '401',
@@ -129,7 +129,7 @@ export const routes = [
         id: 9,
         name: 'level',
         parentId: 0,
-        path: 'level',
+        path: '/level',
         viewPath: null,
         meta: {
             title: '多级嵌套菜单',
@@ -143,7 +143,7 @@ export const routes = [
         id: 10,
         name: 'menu1',
         parentId: 9,
-        path: 'menu1',
+        path: '/level/menu1',
         viewPath: null,
         meta: {
             title: 'menu1',
@@ -157,7 +157,7 @@ export const routes = [
         id: 11,
         name: 'menu1-1',
         parentId: 10,
-        path: 'menu1-1',
+        path: '/level/menu1/menu1-1',
         viewPath: null,
         meta: {
             title: 'menu1-1',
@@ -171,7 +171,7 @@ export const routes = [
         id: 12,
         name: 'menu1-1-1',
         parentId: 11,
-        path: 'menu1-1-1',
+        path: '/level/menu1/menu1-1/menu1-1-1',
         viewPath: 'views/level/menu1.vue',
         meta: {
             title: 'menu1-1-1',
@@ -185,7 +185,7 @@ export const routes = [
         id: 13,
         name: 'menu2',
         parentId: 9,
-        path: 'menu2',
+        path: '/level/menu2',
         viewPath: 'views/level/menu2.vue',
         meta: {
             title: 'menu2',
@@ -367,7 +367,7 @@ export const routes = [
         id: 30,
         name: 'map',
         parentId: 3,
-        path: 'charts/map',
+        path: '/charts/map',
         viewPath: 'views/charts/map.vue',
         meta: {
             title: '地理坐标',
@@ -381,7 +381,7 @@ export const routes = [
         id: 30,
         name: 'gauge',
         parentId: 3,
-        path: 'charts/gauge',
+        path: '/charts/gauge',
         viewPath: 'views/charts/gauge.vue',
         meta: {
             title: '仪表盘',

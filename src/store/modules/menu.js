@@ -21,7 +21,7 @@ const mutations = {
         state.viewRoutes = list
         storage.set('viewRoutes', list)
     },
-    SET_COLLASPE(state, value = false) {
+    COLLAPSE(state, value = false) {
         state.collapse = value
         storage.set('collapse', value)
     },
@@ -49,11 +49,10 @@ const actions = {
                                 parentId: e.parentId,
                                 path: revisePath(e.path),
                                 viewPath: e.viewPath,
-                                // fix 解决同名节点 导致组件名称相同而产生的页面加载错误
-                                name: `${e.name}_${e.id}`,
+                                name: e.name,
                                 meta: {
                                     keepAlive: e.meta.keepAlive === 1,
-                                    title: e.meta.title || e.name,
+                                    title: e.meta.title,
                                     type: e.meta.type,
                                     icon: e.meta.icon,
                                     show: e.meta.show,

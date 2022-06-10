@@ -12,7 +12,7 @@
             <router-view v-slot="{ Component }">
               <transition mode="out-in" name="fade-transform">
                 <keep-alive :include="caches">
-                  <component :is="Component" :key="key"/>
+                  <component :is="Component"/>
                 </keep-alive>
               </transition>
             </router-view>
@@ -24,9 +24,8 @@
 </template>
 
 <script>
-import {reactive, toRefs, watch, computed} from 'vue';
+import {computed} from 'vue';
 import {useStore} from 'vuex';
-import {useRoute} from 'vue-router';
 import sider from './sider';
 import topbar from './topbar';
 import process from './process';
@@ -36,27 +35,13 @@ export default {
   components: {sider, topbar, process},
   setup() {
     const store = useStore();
-    const route = useRoute();
-    const state = reactive({
-      caches: [...store.getters.processList.filter((e) => e.keepAlive).map((e) => e.name)],
-    });
 
-    const collapse = computed(() => {
-      return store.getters.menuCollapse;
-    });
-    const key = computed(() => route.path);
-
-    watch(
-        () => store.getters.processList.length,
-        () => {
-          state.caches = [...store.getters.processList.filter((e) => e.keepAlive).map((e) => e.name)];
-        }
-    );
+    const collapse = computed(() => store.getters.menuCollapse);
+    const caches = computed(() => store.getters.processList.filter(e => e.keepAlive).map(e => e.name))
 
     return {
-      key,
-      ...toRefs(state),
       collapse,
+      caches
     };
   },
 };

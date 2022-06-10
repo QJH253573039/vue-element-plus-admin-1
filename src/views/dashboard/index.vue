@@ -5,9 +5,9 @@
         <div class="title">Vue-ElementPlus-Admin</div>
         <div class="links">
           <a
-            href="https://github.com/TheFirework/vue-element-plus-admin.git"
-            target="_blank"
-            >GitHub</a
+              href="https://github.com/TheFirework/vue-element-plus-admin.git"
+              target="_blank"
+          >GitHub</a
           >
         </div>
       </el-col>
@@ -22,12 +22,12 @@
           </template>
           <div class="box-body">
             <el-table
-              :data="environment"
-              stripe
-              style="width: 100%"
-              :show-header="false"
-              max-height="500"
-              size="mini"
+                :data="environment"
+                stripe
+                style="width: 100%"
+                :show-header="false"
+                max-height="500"
+                size="mini"
             >
               <el-table-column>
                 <template #default="scope">
@@ -50,18 +50,18 @@
           </template>
           <div class="box-body">
             <el-table
-              :data="dependencies"
-              stripe
-              style="width: 100%"
-              :show-header="false"
-              max-height="500"
-              size="mini"
+                :data="dependencies"
+                stripe
+                style="width: 100%"
+                :show-header="false"
+                max-height="500"
+                size="mini"
             >
               <el-table-column>
                 <template #default="scope">
                   <div class="row">
                     <span class="label">{{ scope.row.name }}</span>
-                    <el-tag effect="dark">{{ scope.row.value }} </el-tag>
+                    <el-tag effect="dark">{{ scope.row.value }}</el-tag>
                   </div>
                 </template>
               </el-table-column>
@@ -74,10 +74,11 @@
 </template>
 
 <script>
-import { dependencies } from "@/utils/package.js";
-import { reactive, toRefs } from "vue";
+import {dependencies} from "@/utils/package.js";
+import {onActivated, onDeactivated, reactive, toRefs} from "vue";
+
 export default {
-  name: "dashboard",
+  name: "data",
   setup() {
     let environment = [
       {
@@ -194,7 +195,7 @@ export default {
   overflow-x: auto;
 }
 
-.env{
+.env {
   flex-shrink: 0;
   width: 120px;
   display: inline-block;

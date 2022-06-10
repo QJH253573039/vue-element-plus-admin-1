@@ -53,7 +53,7 @@ export default {
     });
 
     const collapse = () => {
-      store.commit('menu/SET_COLLASPE', !menuCollapse.value);
+      store.commit('menu/COLLAPSE', !menuCollapse.value);
     };
 
     const onCommand = (name) => {

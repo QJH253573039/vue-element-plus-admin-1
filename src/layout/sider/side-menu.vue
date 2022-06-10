@@ -11,7 +11,6 @@
         unique-opened
     >
       <side-menu-item v-for="route in routeList" :key="route.path" :item="route"/>
-      <side-menu-item v-for="route in routeList" :key="route.path" :item="route"/>
     </el-menu>
   </el-aside>
 </template>
@@ -44,14 +43,12 @@ export default {
       return [];
     });
 
-    console.log(routeList)
-
     const handleResize = (e) => {
       let innerWidth = e.target.innerWidth;
       if (innerWidth < 780 && !props.collapse) {
-        store.commit('menu/SET_COLLASPE', true);
+        store.commit('menu/COLLAPSE', true);
       } else if (innerWidth > 1200 && props.collapse) {
-        store.commit('menu/SET_COLLASPE', false);
+        store.commit('menu/COLLAPSE', false);
       }
     };
 

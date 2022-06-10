@@ -21,6 +21,7 @@
         :tree-props="{ children: 'children' }"
         size="mini"
       >
+        <el-table-column prop="title" label="标题" align="left" width="260" />
         <el-table-column prop="name" label="名称" align="left" width="260" />
         <el-table-column prop="icon" label="图标" align="center" width="100">
           <template #default="scope">
@@ -95,6 +96,9 @@
             <el-radio :label="1">菜单</el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="节点标题" prop="title" required>
+          <el-input v-model="temp.title" placeholder="请输入节点标题"></el-input>
+        </el-form-item>
         <el-form-item label="节点名称" prop="name" required>
           <el-input v-model="temp.name" placeholder="请输入节点名称"></el-input>
         </el-form-item>
@@ -163,6 +167,7 @@ export default {
       dialogStatus: "",
       temp: {
         type: 0,
+        title: "",
         name: "",
         parentId: "",
         isShow: true,
@@ -172,6 +177,7 @@ export default {
         viewPath: "",
       },
       rules: {
+        title: [{ required: true, message: "节点标题必须", trigger: "blur" }],
         name: [{ required: true, message: "节点名称必须", trigger: "blur" }],
       },
     });
@@ -191,6 +197,7 @@ export default {
     const resetTemp = () => {
       state.temp = {
         type: 0,
+        title: "",
         name: "",
         parentId: "",
         isShow: true,

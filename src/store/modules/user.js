@@ -38,7 +38,6 @@ const actions = {
         commit('CLEAR_TOKEN')
         commit('menu/CLEAR_MENU_GROUP', null, { root: true })
         commit('menu/CLEAR_VIEW_ROUTES', null, { root: true })
-        commit('menu/CLEAR_PERMIESSION', null, { root: true })
         commit('process/RESET_PROCESS', null, { root: true })
     },
     async queryUserInfo({ commit }) {
