@@ -144,6 +144,7 @@ import MenuIcons from "@/components/menu-icons";
 import MenuFilePath from "@/components/menu-file-path";
 
 export default {
+  name:'menu',
   components: { MenuTree, MenuIcons, MenuFilePath },
   setup() {
     const dataForm = ref(null);

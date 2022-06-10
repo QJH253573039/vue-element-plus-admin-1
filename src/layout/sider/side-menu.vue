@@ -11,13 +11,14 @@
         unique-opened
     >
       <side-menu-item v-for="route in routeList" :key="route.path" :item="route"/>
+      <side-menu-item v-for="route in routeList" :key="route.path" :item="route"/>
     </el-menu>
   </el-aside>
 </template>
 
 <script>
 import _ from 'lodash';
-import {ref, computed, onMounted, onBeforeUnmount} from 'vue';
+import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
 import sideMenuItem from './side-menu-item';
@@ -81,6 +82,21 @@ export default {
   &:not(.el-menu--collapse) {
     width: 260px;
   }
+}
+
+.el-aside {
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.el-menu {
+  border-right: none;
+}
+
+.el-menu--collapse {
+  width: 65px;
 }
 </style>
 

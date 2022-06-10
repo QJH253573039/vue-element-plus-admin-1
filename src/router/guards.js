@@ -22,7 +22,7 @@ export function loadGuards(router) {
         }
 
         if (checkToken()) {
-            if (to.name == 'login') {
+            if (to.name === 'login') {
                 next({ path: '/login' })
                 NProgress.done();
             } else {

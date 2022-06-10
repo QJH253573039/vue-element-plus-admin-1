@@ -45,18 +45,12 @@ export default {
     }
 
     .collapse {
-      width: 64px !important;
+      width: 65px !important;
     }
   }
 
   .menu {
-    overflow-y: auto;
     height: calc(100% - 80px);
-
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
   }
 }
 </style>

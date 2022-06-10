@@ -72,7 +72,7 @@ export default {
 
 .hideSidebar {
   .fixed-header {
-    width: calc(100% - 64px) !important;
+    width: calc(100% - 65px) !important;
   }
 }
 

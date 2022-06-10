@@ -104,12 +104,7 @@
       </el-form>
       <template #footer>
         <el-button @click="dialogFormVisible = false"> 取消 </el-button>
-        <el-button
-          type="success"
-          @click="dialogStatus === 'create' ? createData() : updateData()"
-        >
-          确定
-        </el-button>
+        <el-button type="success"  @click="dialogStatus === 'create' ? createData() : updateData()" >确定</el-button>
       </template>
     </el-dialog>
   </div>
@@ -120,6 +115,7 @@ import RoleTree from "@/components/role-tree";
 import { toRefs } from "vue";
 import useRole from "./useRole";
 export default {
+  name:'role',
   components: { RoleTree },
   setup() {
     const state = useRole();
